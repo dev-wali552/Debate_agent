@@ -2,9 +2,9 @@ fastapi
 uvicorn
 python-dotenv
 langchain
+langchain-core
 langchain-groq
 langgraph
 groq
 gTTS
 python-multipart
-tavily-python
