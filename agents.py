@@ -4,6 +4,7 @@ from typing import Dict , cast
 from state import State
 from langchain_core.messages import AIMessage
 from langchain_groq import ChatGroq
+import json
 
 llm = ChatGroq(model = "llama-3.3-70b-versatile")
 
@@ -39,8 +40,15 @@ async def debater_con(state:State)->Dict[str,str]:
 
 async def judge(state:State)-> Dict[str,str]:
       
-        system_prompt = """"You are a professional judge who picks a winner based on the arguments given by debator_pro and debator_con.Pick a winner
-        after weighing each and every argument , check whose arguments are more sound and strong and then return the winner's reponse as the final answer to the user's query"""
+        system_prompt = """You are a professional judge evaluating a debate.
+                    You will be given a PRO argument and a CON argument.
+                    Analyze both carefully and pick a winner.
+
+                    Respond ONLY with a JSON object in this exact format, no other text:
+                    {
+                        "winner": "PRO" or "CON",
+                        "reasoning": "Your detailed reasoning here in 2-3 sentences"
+                    }"""
 
         response = cast(
              AIMessage,
@@ -49,7 +57,12 @@ async def judge(state:State)-> Dict[str,str]:
              )
         )
 
-        return {"winner":response.content}
+        parsed = json.loads(response.content)
+        return {
+            "winner": parsed["winner"],        
+            "reasoning": parsed["reasoning"]   
+            }
+
 
     
 

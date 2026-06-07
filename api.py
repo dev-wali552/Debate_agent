@@ -31,14 +31,15 @@ def root():
 @app.post("/debate")
 async def chat(request: ChatRequest):
     config = {"configurable": {"thread_id": request.session_id}}
-    result = await graph.ainvoke({
-            {"topic": request.topic, "messages": [HumanMessage(content=request.topic)]}
+    result = await graph.ainvoke(
+            {"topic": request.topic, "messages": [HumanMessage(content=request.topic)]
     }, config=config)
 
     return {
     "pros": result["pros"],
     "con": result["con"],
-    "winner": result["winner"]
+    "winner": result["winner"],
+    "reasoning": result["reasoning"]
 }
     
 @app.post("/voice-debate")
@@ -76,5 +77,6 @@ async def voice_chat(audio: UploadFile = File(...), session_id: str = Form(...))
     "pros": result["pros"],
     "con": result["con"],
     "winner":result["winner"],
+    "reasoning": result["reasoning"],
     "audio": audio_base64  # frontend decodes this and plays it
 }

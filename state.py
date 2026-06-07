@@ -8,4 +8,5 @@ class State(TypedDict):
     pros:str
     cons:str
     winner:str
+    reasoning: str
     
