@@ -60,7 +60,7 @@ async def voice_chat(audio: UploadFile = File(...), session_id: str = Form(...))
         {"topic": user_text, "messages": [HumanMessage(content=user_text)]},
         config=config
     ) 
-    response_text = result["winner"]
+    response_text = f"{result['winner']} wins. {result['reasoning']}"
 
     # STEP 3: gTTS TTS — text → audio bytes
     tts = gTTS(text=response_text, lang='en')
