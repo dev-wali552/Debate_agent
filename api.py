@@ -37,7 +37,7 @@ async def chat(request: ChatRequest):
 
     return {
     "pros": result["pros"],
-    "cons": result["cons"],
+    "con": result["cons"],
     "winner": result["winner"],
     "reasoning": result["reasoning"]
 }
@@ -75,7 +75,7 @@ async def voice_chat(audio: UploadFile = File(...), session_id: str = Form(...))
     # STEP 4: Return audio back to frontend
     return {
     "pros": result["pros"],
-    "cons": result["cons"],
+    "con": result["cons"],
     "winner":result["winner"],
     "reasoning": result["reasoning"],
     "audio": audio_base64  # frontend decodes this and plays it
