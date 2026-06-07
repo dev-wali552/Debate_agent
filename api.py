@@ -37,7 +37,7 @@ async def chat(request: ChatRequest):
 
     return {
     "pros": result["pros"],
-    "cons": result["con"],
+    "cons": result["cons"],
     "winner": result["winner"],
     "reasoning": result["reasoning"]
 }
