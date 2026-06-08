@@ -212,4 +212,4 @@ Structured output keeps the response predictable and parseable — no hallucinat
 
 ---
 
-Built by [Wali](https://github.com/MAGUIRE-GOATED) — first-year CS student at IIIT Delhi, building production AI agents.
+Built by [Wali](https://github.com/dev-wali552) — first-year CS student at IIIT Delhi, building production AI agents.
